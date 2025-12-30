@@ -1,0 +1,10 @@
+{
+  "fullCrawl": true,
+  "totalPages": 1006,
+  "maxConcurrency": 10,
+  "requestHandlerTimeoutSecs": 120,
+  "sameDomainDelaySecs": 2,
+  "proxyConfiguration": {
+    "useApifyProxy": false
+  }
+}

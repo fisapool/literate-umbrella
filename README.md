@@ -87,6 +87,8 @@ The actor accepts the following input parameters:
 ```json
 {
   "startUrls": [],
+  "fullCrawl": false,
+  "totalPages": 1006,
   "states": ["johor", "selangor", "kuala lumpur"],
   "maxConcurrency": 5,
   "maxRequestsPerCrawl": 0,
@@ -98,32 +100,51 @@ The actor accepts the following input parameters:
 
 #### Parameters
 
-- **startUrls** (array, optional): Custom URLs to start scraping from. Leave empty to scrape all states.
-- **states** (array, optional): List of Malaysian states to scrape. Leave empty to scrape all states.
-- **maxConcurrency** (integer, default: 5): Maximum number of pages to scrape concurrently.
+- **startUrls** (array, optional): Custom URLs to start scraping from. Leave empty to use default URL generation.
+- **fullCrawl** (boolean, default: false): If `true`, scrapes the complete unfiltered list (pages 1-1006, ~20,000 specialists). If `false`, uses state-filtered mode.
+- **totalPages** (integer, default: 1006): Total number of pages to scrape when `fullCrawl` is `true`. Each page contains ~20 specialists.
+- **states** (array, optional): List of Malaysian states to scrape (only used when `fullCrawl` is `false`). Leave empty to scrape all states.
+- **maxConcurrency** (integer, default: 5): Maximum number of pages to scrape concurrently. Recommended: 30 for full crawl, 5-10 for state-filtered.
 - **maxRequestsPerCrawl** (integer, default: 0): Maximum number of pages to scrape (0 = unlimited).
-- **proxyConfiguration** (object): Proxy settings for the scraper.
+- **proxyConfiguration** (object): Proxy settings for the scraper. Recommended: `{"useApifyProxy": true}` for full crawl.
 
 ### Example Configurations
 
-#### Scrape All States
+#### Full Crawl (Recommended - Gets All ~20,000 Specialists)
 ```json
 {
-  "maxConcurrency": 5
+  "fullCrawl": true,
+  "totalPages": 1006,
+  "maxConcurrency": 30,
+  "proxyConfiguration": {
+    "useApifyProxy": true
+  }
 }
 ```
+**Benefits**: Complete dataset, no pagination issues, one-time full scrape. Takes ~1-2 hours on Apify cloud.
 
-#### Scrape Specific States
+#### State-Filtered Mode (Legacy - Limited Data)
 ```json
 {
+  "fullCrawl": false,
   "states": ["johor", "selangor", "kuala lumpur"],
   "maxConcurrency": 10
+}
+```
+**Note**: State-filtered mode only scrapes page 1 per state due to pagination quirks on the NSR site.
+
+#### Scrape All States (State-Filtered)
+```json
+{
+  "fullCrawl": false,
+  "maxConcurrency": 5
 }
 ```
 
 #### Limited Scraping (Testing)
 ```json
 {
+  "fullCrawl": false,
   "states": ["melaka"],
   "maxRequestsPerCrawl": 50,
   "maxConcurrency": 3
