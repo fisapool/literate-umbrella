@@ -1,0 +1,30 @@
+{
+  "name": "nsr-scraper",
+  "version": "1.0.0",
+  "description": "Apify Actor for scraping Malaysian National Specialist Register (nsr.org.my)",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apify",
+    "scraper",
+    "healthcare",
+    "malaysia",
+    "nsr",
+    "specialists"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apify": "^3.1.0",
+    "cheerio": "^1.0.0-rc.12",
+    "crawlee": "^3.0.0",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@apify/eslint-config-ts": "^0.4.0",
+    "eslint": "^8.0.0"
+  }
+}

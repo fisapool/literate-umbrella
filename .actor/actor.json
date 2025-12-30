@@ -1,0 +1,41 @@
+{
+  "actorSpecification": 1,
+  "name": "nsr-scraper",
+  "title": "NSR Malaysia Specialist Scraper",
+  "description": "Scrapes healthcare specialist data from Malaysia's National Specialist Register (nsr.org.my)",
+  "version": "1.0.0",
+  "meta": {
+    "templateId": "node-playwright-chrome"
+  },
+  "input": "./input_schema.json",
+  "dockerfile": "./Dockerfile",
+  "readme": "./README.md",
+  "categories": [
+    "ECOMMERCE"
+  ],
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "title": "NSR Specialists",
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "name",
+              "nsrNo",
+              "specialty",
+              "state",
+              "establishment",
+              "sector"
+            ]
+          },
+          "display": {
+            "component": "table",
+            "properties": {}
+          }
+        }
+      }
+    }
+  }
+}
