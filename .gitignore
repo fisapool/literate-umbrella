@@ -40,3 +40,8 @@ Icon
 .sync/
 coverage/
 .nyc_output/
+
+# Test outputs
+test-output/
+test-storage/
+test-storage-timing/
