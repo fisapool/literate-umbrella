@@ -1,11 +1,42 @@
+# Dependencies
 node_modules/
+package-lock.json
+
+# Apify storage
 apify_storage/
 storage/
+
+# Build outputs
 dist/
+build/
+
+# Environment variables
 .env
+.env.local
+.env.*.local
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Logs
 *.log
+logs/
+*.log.*
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Apify specific
 input.json
+Icon
+
+# Other
 .claude/
 .sync/
-Icon
+coverage/
+.nyc_output/
